@@ -26,7 +26,7 @@ class Sword(Weapon):
         super().__init__("меч")
 
     def attack(self):
-        print("Боец наносит удар мечём.")
+        print("Боец наносит удар мечом.")
 
 
 class Bow(Weapon):
