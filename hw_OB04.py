@@ -13,8 +13,8 @@ from abc import ABC, abstractmethod
 
 
 class Weapon(ABC):
-    def __init__(self):
-        self.name = None
+    def __init__(self, name):
+        self.name = name
 
     @abstractmethod
     def attack(self):
@@ -23,8 +23,7 @@ class Weapon(ABC):
 
 class Sword(Weapon):
     def __init__(self):
-        super().__init__()
-        self.name = "меч"
+        super().__init__("меч")
 
     def attack(self):
         print("Боец наносит удар мечём.")
@@ -32,8 +31,7 @@ class Sword(Weapon):
 
 class Bow(Weapon):
     def __init__(self):
-        super().__init__()
-        self.name = "лук"
+        super().__init__("лук")
 
     def attack(self):
         print("Боец стреляет из лука.")
@@ -41,8 +39,7 @@ class Bow(Weapon):
 
 class Axe(Weapon):
     def __init__(self):
-        super().__init__()
-        self.name = "топор"
+        super().__init__("топор")
 
     def attack(self):
         print("Боец наносит удар топором.")
@@ -56,37 +53,30 @@ class Fighter:
         self.weapon = new_weapon
         print(f"\nБоец выбирает в качестве оружия - {new_weapon.name}")
 
+    def attack(self):
+        self.weapon.attack()
+
 
 class Monster:
     def dead_monster(self):
         print(f"Монстр умирает.")
 
 
-class FighterAttack:
-    def __init__(self, weapon):
-        self.weapon = weapon
-
-    def attack(self):
-        self.weapon.attack()
-
-
 fighter = Fighter(None)
 monster = Monster()
+
 sword = Sword()
 bow = Bow()
 axe = Axe()
 
 fighter.change_weapon(bow)
-fighter_attack = FighterAttack(bow)
-fighter_attack.attack()
+fighter.attack()
 monster.dead_monster()
 
 fighter.change_weapon(axe)
-fighter_attack = FighterAttack(axe)
-fighter_attack.attack()
+fighter.attack()
 monster.dead_monster()
 
 fighter.change_weapon(sword)
-fighter_attack = FighterAttack(sword)
-fighter_attack.attack()
+fighter.attack()
 monster.dead_monster()
